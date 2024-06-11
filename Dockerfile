@@ -30,7 +30,7 @@ useradd \
 
 apt-get update --yes
 
-apt-get install --yes \
+apt-get install --no-install-recommends --yes \
   "ca-certificates=20240203" \
   "curl=8.5.0-2ubuntu10.1" \
   "python3.12=3.12.3-1" \
@@ -40,7 +40,7 @@ apt-get clean --yes
 
 rm --force --recursive /var/lib/apt/lists/*
 
-pip install --break-system-packages --no-cache \
+pip install --break-system-packages --no-cache-dir \
   "mlflow==${MLFLOW_VERSION}" \
   "prometheus-flask-exporter==${PROMETHEUS_FLASK_EXPORTER_VERSION}"
 EOF
