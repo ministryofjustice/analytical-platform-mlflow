@@ -1,5 +1,5 @@
 {
-  "name": "analytical-platform-visual-studio-code",
+  "name": "analytical-platform-mlflow",
   "image": "ghcr.io/ministryofjustice/devcontainer-base:latest",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},

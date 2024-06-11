@@ -38,18 +38,18 @@ jobs:
         uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # v5.4.0
         with:
           push: true
-          tags: ghcr.io/ministryofjustice/analytical-platform-visual-studio-code:${{ github.ref_name }}
+          tags: ghcr.io/ministryofjustice/analytical-platform-mlflow:${{ github.ref_name }}
 
       - name: Sign
         id: sign
         shell: bash
         run: |
-          cosign sign --yes ghcr.io/ministryofjustice/analytical-platform-visual-studio-code@${{ steps.build_and_push.outputs.digest }}
+          cosign sign --yes ghcr.io/ministryofjustice/analytical-platform-mlflow@${{ steps.build_and_push.outputs.digest }}
 
       - name: Verify
         id: verify
         run: |
           cosign verify \
             --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-            --certificate-identity=https://github.com/ministryofjustice/analytical-platform-visual-studio-code/.github/workflows/release.yml@refs/tags/${{ github.ref_name }} \
-            ghcr.io/ministryofjustice/analytical-platform-visual-studio-code@${{ steps.build_and_push.outputs.digest }}
+            --certificate-identity=https://github.com/ministryofjustice/analytical-platform-mlflow/.github/workflows/release.yml@refs/tags/${{ github.ref_name }} \
+            ghcr.io/ministryofjustice/analytical-platform-mlflow@${{ steps.build_and_push.outputs.digest }}
