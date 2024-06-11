@@ -11,6 +11,7 @@ ENV CONTAINER_USER="analyticalplatform" \
     CONTAINER_GROUP="analyticalplatform" \
     CONTAINER_GID="1001" \
     DEBIAN_FRONTEND="noninteractive" \
+    MLFLOW_ROOT="/mlflow" \
     MLFLOW_VERSION="2.13.2" \
     PROMETHEUS_FLASK_EXPORTER_VERSION="0.23.0"
 
@@ -43,8 +44,15 @@ rm --force --recursive /var/lib/apt/lists/*
 pip install --break-system-packages --no-cache-dir \
   "mlflow==${MLFLOW_VERSION}" \
   "prometheus-flask-exporter==${PROMETHEUS_FLASK_EXPORTER_VERSION}"
+
+install --directory --owner ${CONTAINER_USER} --group ${CONTAINER_GROUP} --mode 0755 ${MLFLOW_ROOT}
 EOF
 
 USER ${CONTAINER_USER}
-WORKDIR /home/${CONTAINER_USER}
+WORKDIR ${MLFLOW_ROOT}
 EXPOSE 5000
+COPY --chown=${CONTAINER_USER}:${CONTAINER_GROUP} src/mlflow/auth.ini /mlflow/auth.ini
+COPY --chown=nobody:nobody --chmod=0755 src/usr/local/bin/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY --chown=nobody:nobody --chmod=0755 src/usr/local/bin/healthcheck.sh /usr/local/bin/healthcheck.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+HEALTHCHECK --interval=15s --timeout=10s --start-period=10s --retries=3 CMD ["/usr/local/bin/healthcheck.sh"]

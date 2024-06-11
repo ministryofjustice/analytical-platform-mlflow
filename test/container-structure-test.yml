@@ -39,24 +39,19 @@ commandTests:
     args: ["--version"]
     expectedOutput: ["mlflow, version 2.13.2"]
 
-# fileContentTests:
-#   - name: "bashrc first-run-notice"
-#     path: "/etc/bash.bashrc"
-#     expectedContents: ["# This is a first run notice for Visual Studio Code"]
+fileExistenceTests:
+  - name: "/mlflow"
+    path: "/mlflow"
+    shouldExist: true
 
-# fileExistenceTests:
-#   - name: "/opt/visual-studio-code"
-#     path: "/opt/visual-studio-code"
-#     shouldExist: true
+  - name: "/mlflow/auth.ini"
+    path: "/mlflow/auth.ini"
+    shouldExist: true
 
-#   - name: "/opt/visual-studio-code/.bashrc"
-#     path: "/opt/visual-studio-code/.bashrc"
-#     shouldExist: true
+  - name: "/usr/local/bin/entrypoint.sh"
+    path: "/usr/local/bin/entrypoint.sh"
+    shouldExist: true
 
-#   - name: "/opt/visual-studio-code/.bash_logout"
-#     path: "/opt/visual-studio-code/.bash_logout"
-#     shouldExist: true
-
-#   - name: "/opt/visual-studio-code/.profile"
-#     path: "/opt/visual-studio-code/.profile"
-#     shouldExist: true
+  - name: "/usr/local/bin/healthcheck.sh"
+    path: "/usr/local/bin/healthcheck.sh"
+    shouldExist: true
