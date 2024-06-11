@@ -13,7 +13,9 @@ ENV CONTAINER_USER="analyticalplatform" \
     DEBIAN_FRONTEND="noninteractive" \
     MLFLOW_ROOT="/mlflow" \
     MLFLOW_VERSION="2.13.2" \
-    PROMETHEUS_FLASK_EXPORTER_VERSION="0.23.0"
+    BOTO3_VERSION="1.34.123" \
+    PROMETHEUS_FLASK_EXPORTER_VERSION="0.23.0" \
+    PSYCOPG2_BINARY_VERSION="2.9.9"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
@@ -34,6 +36,7 @@ apt-get update --yes
 apt-get install --no-install-recommends --yes \
   "ca-certificates=20240203" \
   "curl=8.5.0-2ubuntu10.1" \
+  "libpq-dev=16.3-0ubuntu0.24.04.1" \
   "python3.12=3.12.3-1" \
   "python3-pip=24.0+dfsg-1ubuntu1"
 
@@ -43,7 +46,9 @@ rm --force --recursive /var/lib/apt/lists/*
 
 pip install --break-system-packages --no-cache-dir \
   "mlflow==${MLFLOW_VERSION}" \
-  "prometheus-flask-exporter==${PROMETHEUS_FLASK_EXPORTER_VERSION}"
+  "boto3==${BOTO3_VERSION}" \
+  "prometheus-flask-exporter==${PROMETHEUS_FLASK_EXPORTER_VERSION}" \
+  "psycopg2-binary==${PSYCOPG2_BINARY_VERSION}"
 
 install --directory --owner ${CONTAINER_USER} --group ${CONTAINER_GROUP} --mode 0755 ${MLFLOW_ROOT}
 EOF
