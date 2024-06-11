@@ -1,0 +1,38 @@
+---
+services:
+  mlflow_auth_db:
+    image: public.ecr.aws/docker/library/postgres:16.3-alpine3.20
+    environment:
+      POSTGRES_USER: mlflow
+      POSTGRES_PASSWORD: mlflow
+      POSTGRES_DB: mlflow
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mlflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  mlflow_db:
+    image: public.ecr.aws/docker/library/postgres:16.3-alpine3.20
+    environment:
+      POSTGRES_USER: mlflow
+      POSTGRES_PASSWORD: mlflow
+      POSTGRES_DB: mlflow
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mlflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  mlflow:
+    image: analytical-platform.service.justice.gov.uk/mlflow:local
+    build: .
+    environment:
+      # MLFLOW_SERVER_DEV_MODE: "true"
+      MLFLOW_AUTH_DATABASE_URI: postgresql://mlflow:mlflow@mlflow_auth_db:5432/mlflow
+      MLFLOW_SERVER_BACKEND_STORE_URI: postgresql://mlflow:mlflow@mlflow_db:5432/mlflow
+    ports:
+      - "5000:5000"
+    depends_on:
+      mlflow_auth_db:
+        condition: service_healthy
+      mlflow_db:
+        condition: service_healthy
