@@ -1,0 +1,62 @@
+---
+schemaVersion: 2.0.0
+
+containerRunOptions:
+  user: "analyticalplatform"
+
+commandTests:
+  - name: "ubuntu"
+    command: "grep"
+    args: ["DISTRIB_RELEASE", "/etc/lsb-release"]
+    expectedOutput: ["DISTRIB_RELEASE=24.04"]
+
+  - name: "whoami"
+    command: "whoami"
+    expectedOutput: ["analyticalplatform"]
+
+  - name: "user"
+    command: "id"
+    args: ["--user", "analyticalplatform"]
+    expectedOutput: ["1001"]
+
+  - name: "groups"
+    command: "id"
+    args: ["--groups", "analyticalplatform"]
+    expectedOutput: ["1001"]
+
+  - name: "python"
+    command: "python3"
+    args: ["--version"]
+    expectedOutput: ["Python 3.12.3"]
+
+  - name: "pip"
+    command: "pip"
+    args: ["--version"]
+    expectedOutput: ["pip 24.0"]
+
+  - name: "mlflow"
+    command: "mlflow"
+    args: ["--version"]
+    expectedOutput: ["mlflow, version 2.13.2"]
+
+# fileContentTests:
+#   - name: "bashrc first-run-notice"
+#     path: "/etc/bash.bashrc"
+#     expectedContents: ["# This is a first run notice for Visual Studio Code"]
+
+# fileExistenceTests:
+#   - name: "/opt/visual-studio-code"
+#     path: "/opt/visual-studio-code"
+#     shouldExist: true
+
+#   - name: "/opt/visual-studio-code/.bashrc"
+#     path: "/opt/visual-studio-code/.bashrc"
+#     shouldExist: true
+
+#   - name: "/opt/visual-studio-code/.bash_logout"
+#     path: "/opt/visual-studio-code/.bash_logout"
+#     shouldExist: true
+
+#   - name: "/opt/visual-studio-code/.profile"
+#     path: "/opt/visual-studio-code/.profile"
+#     shouldExist: true
