@@ -13,3 +13,6 @@ build:
 		echo "Building on $$ARCH architecture"; \
 		docker build --file Dockerfile --tag $(IMAGE_NAME) . ;; \
 	esac
+
+ct:
+	ct lint --charts chart
