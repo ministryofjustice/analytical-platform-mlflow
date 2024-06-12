@@ -32,3 +32,4 @@ jobs:
         uses: super-linter/super-linter/slim@88ea3923a7e1f89dd485d079f6eb5f5e8f937589 # v6.6.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_KUBERNETES_KUBECONFORM: false # Super-Linter doesn't support https://github.com/jtyr/kubeconform-helm

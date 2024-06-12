@@ -9,8 +9,8 @@ on:
 permissions: {}
 
 jobs:
-  release:
-    name: Release
+  release-image:
+    name: Release Image
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -53,3 +53,37 @@ jobs:
             --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
             --certificate-identity=https://github.com/ministryofjustice/analytical-platform-mlflow/.github/workflows/release.yml@refs/tags/${{ github.ref_name }} \
             ghcr.io/ministryofjustice/analytical-platform-mlflow@${{ steps.build_and_push.outputs.digest }}
+
+  release-chart:
+    name: Release Chart
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+
+      - name: Set Up Helm
+        id: setup_helm
+        uses: azure/setup-helm@fe7b79cd5ee1e45176fcad797de68ecaf3ca4814 # v4.2.0
+
+      - name: Log in to GitHub Container Registry
+        id: login_ghcr
+        uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3.2.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Package Chart
+        id: package_chart
+        run: |
+          helm package chart --destination .helm-deploy
+
+      - name: Push Chart
+        id: push_chart
+        run: |
+          helm push .helm-deploy/mlflow-${{ github.ref_name }}.tgz oci://ghcr.io/ministryofjustice/analytical-platform-charts
