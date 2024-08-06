@@ -1,4 +1,4 @@
-FROM public.ecr.aws/ubuntu/ubuntu@sha256:4f5ca1c8b7abe2bd1162e629cafbd824c303b98954b1a168526aca6021f8affe
+FROM public.ecr.aws/ubuntu/ubuntu@sha256:288b44a1b2dfe3788255c3abd41e346bece153b9e066325f461f605425afaf82
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform (analytical-platform@digital.justice.gov.uk)" \
@@ -12,9 +12,9 @@ ENV CONTAINER_USER="analyticalplatform" \
     CONTAINER_GID="1001" \
     DEBIAN_FRONTEND="noninteractive" \
     MLFLOW_ROOT="/mlflow" \
-    MLFLOW_VERSION="2.14.1" \
-    BOTO3_VERSION="1.34.131" \
-    PROMETHEUS_FLASK_EXPORTER_VERSION="0.23.0" \
+    MLFLOW_VERSION="2.15.1" \
+    BOTO3_VERSION="1.34.154" \
+    PROMETHEUS_FLASK_EXPORTER_VERSION="0.23.1" \
     PSYCOPG2_BINARY_VERSION="2.9.9"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
@@ -35,9 +35,9 @@ apt-get update --yes
 
 apt-get install --no-install-recommends --yes \
   "ca-certificates=20240203" \
-  "curl=8.5.0-2ubuntu10.1" \
+  "curl=8.5.0-2ubuntu10.2" \
   "libpq-dev=16.3-0ubuntu0.24.04.1" \
-  "python3.12=3.12.3-1" \
+  "python3.12=3.12.3-1ubuntu0.1" \
   "python3-pip=24.0+dfsg-1ubuntu1"
 
 apt-get clean --yes
