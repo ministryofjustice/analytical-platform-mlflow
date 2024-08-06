@@ -1,7 +1,7 @@
 IMAGE_NAME = ghcr.io/ministryofjustice/analytical-platform-mlflow:latest
 
 test: build
-	container-structure-test test --config test/container-structure-test.yml --image $(IMAGE_NAME)
+	container-structure-test test --platform linux/amd64 --config test/container-structure-test.yml --image $(IMAGE_NAME)
 
 build:
 	@ARCH=`uname -m`; \
