@@ -13,7 +13,7 @@ ENV CONTAINER_USER="analyticalplatform" \
     DEBIAN_FRONTEND="noninteractive" \
     MLFLOW_ROOT="/mlflow" \
     MLFLOW_VERSION="2.15.1" \
-    BOTO3_VERSION="1.34.154" \
+    BOTO3_VERSION="1.35.0" \
     PROMETHEUS_FLASK_EXPORTER_VERSION="0.23.1" \
     PSYCOPG2_BINARY_VERSION="2.9.9"
 
