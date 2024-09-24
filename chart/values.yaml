@@ -6,7 +6,7 @@ fullnameOverride: ""
 image:
   repository: ghcr.io/ministryofjustice/analytical-platform-mlflow
   pullPolicy: IfNotPresent
-  tag: 2.15.1-rc2
+  tag: 2.16.1-rc1
 
 imagePullSecrets: []
 
