@@ -19,6 +19,8 @@ ENV CONTAINER_USER="analyticalplatform" \
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
 RUN <<EOF
+userdel --remove --force ubuntu
+
 groupadd \
   --gid ${CONTAINER_GID} \
   ${CONTAINER_GROUP}
