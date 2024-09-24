@@ -17,12 +17,12 @@ commandTests:
   - name: "user"
     command: "id"
     args: ["--user", "analyticalplatform"]
-    expectedOutput: ["1001"]
+    expectedOutput: ["1000"]
 
   - name: "groups"
     command: "id"
     args: ["--groups", "analyticalplatform"]
-    expectedOutput: ["1001"]
+    expectedOutput: ["1000"]
 
   - name: "python"
     command: "python3"

@@ -1,4 +1,4 @@
-FROM public.ecr.aws/ubuntu/ubuntu@sha256:288b44a1b2dfe3788255c3abd41e346bece153b9e066325f461f605425afaf82
+FROM public.ecr.aws/ubuntu/ubuntu@sha256:5b2fc4131b3c134a019c3ea815811de70e6ad9ee1626f59bf302558a95b436e5
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform (analytical-platform@digital.justice.gov.uk)" \
@@ -7,14 +7,13 @@ LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.url="https://github.com/ministryofjustice/analytical-platform-mlflow"
 
 ENV CONTAINER_USER="analyticalplatform" \
-    CONTAINER_UID="1001" \
+    CONTAINER_UID="1000" \
     CONTAINER_GROUP="analyticalplatform" \
-    CONTAINER_GID="1001" \
+    CONTAINER_GID="1000" \
     DEBIAN_FRONTEND="noninteractive" \
     MLFLOW_ROOT="/mlflow" \
-    MLFLOW_VERSION="2.15.1" \
-    BOTO3_VERSION="1.35.0" \
-    PROMETHEUS_FLASK_EXPORTER_VERSION="0.23.1" \
+    MLFLOW_VERSION="2.16.1" \
+    BOTO3_VERSION="1.35.25" \
     PSYCOPG2_BINARY_VERSION="2.9.9"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
@@ -35,9 +34,9 @@ apt-get update --yes
 
 apt-get install --no-install-recommends --yes \
   "ca-certificates=20240203" \
-  "curl=8.5.0-2ubuntu10.3" \
+  "curl=8.5.0-2ubuntu10.4" \
   "libpq-dev=16.4-0ubuntu0.24.04.2" \
-  "python3.12=3.12.3-1ubuntu0.1" \
+  "python3.12=3.12.3-1ubuntu0.2" \
   "python3-pip=24.0+dfsg-1ubuntu1"
 
 apt-get clean --yes
@@ -47,7 +46,6 @@ rm --force --recursive /var/lib/apt/lists/*
 pip install --break-system-packages --no-cache-dir \
   "mlflow==${MLFLOW_VERSION}" \
   "boto3==${BOTO3_VERSION}" \
-  "prometheus-flask-exporter==${PROMETHEUS_FLASK_EXPORTER_VERSION}" \
   "psycopg2-binary==${PSYCOPG2_BINARY_VERSION}"
 
 install --directory --owner ${CONTAINER_USER} --group ${CONTAINER_GROUP} --mode 0755 ${MLFLOW_ROOT}
