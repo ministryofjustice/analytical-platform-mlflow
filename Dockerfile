@@ -12,7 +12,7 @@ ENV CONTAINER_USER="analyticalplatform" \
     CONTAINER_GID="1000" \
     DEBIAN_FRONTEND="noninteractive" \
     MLFLOW_ROOT="/mlflow" \
-    MLFLOW_VERSION="2.16.1" \
+    MLFLOW_VERSION="2.16.2" \
     BOTO3_VERSION="1.35.25" \
     PSYCOPG2_BINARY_VERSION="2.9.9"
 
