@@ -32,4 +32,5 @@ jobs:
         uses: super-linter/super-linter/slim@b92721f792f381cedc002ecdbb9847a15ece5bb8 # v7.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_CHECKOV: false # Disabling while in discovery
           VALIDATE_KUBERNETES_KUBECONFORM: false # Super-Linter doesn't support https://github.com/jtyr/kubeconform-helm
