@@ -1,7 +1,7 @@
 ---
 services:
   mlflow_auth_db:
-    image: public.ecr.aws/docker/library/postgres:16.3-alpine3.20
+    image: public.ecr.aws/docker/library/postgres:16.4-alpine3.20
     environment:
       POSTGRES_USER: mlflow
       POSTGRES_PASSWORD: mlflow
@@ -12,7 +12,7 @@ services:
       timeout: 5s
       retries: 5
   mlflow_db:
-    image: public.ecr.aws/docker/library/postgres:16.3-alpine3.20
+    image: public.ecr.aws/docker/library/postgres:16.4-alpine3.20
     environment:
       POSTGRES_USER: mlflow
       POSTGRES_PASSWORD: mlflow
@@ -23,7 +23,7 @@ services:
       timeout: 5s
       retries: 5
   mlflow:
-    image: analytical-platform.service.justice.gov.uk/mlflow:local
+    image: ghcr.io/ministryofjustice/analytical-platform-mlflow:local
     build: .
     environment:
       # MLFLOW_SERVER_DEV_MODE: "true"

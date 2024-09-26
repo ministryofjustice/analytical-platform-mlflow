@@ -40,12 +40,16 @@ commandTests:
     expectedOutput: ["mlflow, version 2.16.2"]
 
 fileExistenceTests:
-  - name: "/mlflow"
-    path: "/mlflow"
+  - name: "/opt/mlflow"
+    path: "/opt/mlflow"
     shouldExist: true
 
-  - name: "/mlflow/auth.ini"
-    path: "/mlflow/auth.ini"
+  - name: "/opt/mlflow/auth.ini"
+    path: "/opt/mlflow/auth.ini"
+    shouldExist: true
+
+  - name: "/opt/mlflow/requirements.txt"
+    path: "/opt/mlflow/requirements.txt"
     shouldExist: true
 
   - name: "/usr/local/bin/entrypoint.sh"

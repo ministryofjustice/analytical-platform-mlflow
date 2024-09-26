@@ -11,10 +11,7 @@ ENV CONTAINER_USER="analyticalplatform" \
     CONTAINER_GROUP="analyticalplatform" \
     CONTAINER_GID="1000" \
     DEBIAN_FRONTEND="noninteractive" \
-    MLFLOW_ROOT="/mlflow" \
-    MLFLOW_VERSION="2.16.2" \
-    BOTO3_VERSION="1.35.25" \
-    PSYCOPG2_BINARY_VERSION="2.9.9"
+    MLFLOW_ROOT="/opt/mlflow"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
@@ -45,18 +42,18 @@ apt-get clean --yes
 
 rm --force --recursive /var/lib/apt/lists/*
 
-pip install --break-system-packages --no-cache-dir \
-  "mlflow==${MLFLOW_VERSION}" \
-  "boto3==${BOTO3_VERSION}" \
-  "psycopg2-binary==${PSYCOPG2_BINARY_VERSION}"
-
 install --directory --owner ${CONTAINER_USER} --group ${CONTAINER_GROUP} --mode 0755 ${MLFLOW_ROOT}
+EOF
+
+COPY --chown=${CONTAINER_USER}:${CONTAINER_GROUP} src${MLFLOW_ROOT}/requirements.txt ${MLFLOW_ROOT}/requirements.txt
+RUN <<EOF
+pip install --break-system-packages --no-cache-dir --requirement ${MLFLOW_ROOT}/requirements.txt
 EOF
 
 USER ${CONTAINER_USER}
 WORKDIR ${MLFLOW_ROOT}
 EXPOSE 5000
-COPY --chown=${CONTAINER_USER}:${CONTAINER_GROUP} src/mlflow/auth.ini /mlflow/auth.ini
+COPY --chown=${CONTAINER_USER}:${CONTAINER_GROUP} src${MLFLOW_ROOT}/auth.ini ${MLFLOW_ROOT}/auth.ini
 COPY --chown=nobody:nobody --chmod=0755 src/usr/local/bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY --chown=nobody:nobody --chmod=0755 src/usr/local/bin/healthcheck.sh /usr/local/bin/healthcheck.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

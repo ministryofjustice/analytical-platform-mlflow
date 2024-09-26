@@ -1,18 +1,27 @@
-IMAGE_NAME = ghcr.io/ministryofjustice/analytical-platform-mlflow:latest
+.PHONY: test build run scan ct
 
-test: build
-	container-structure-test test --platform linux/amd64 --config test/container-structure-test.yml --image $(IMAGE_NAME)
-
-build:
-	@ARCH=`uname -m`; \
-	case $$ARCH in \
-	aarch64 | arm64) \
-		echo "Building on $$ARCH architecture"; \
-		docker build --platform linux/amd64 --file Dockerfile --tag $(IMAGE_NAME) . ;; \
-	*) \
-		echo "Building on $$ARCH architecture"; \
-		docker build --file Dockerfile --tag $(IMAGE_NAME) . ;; \
-	esac
+IMAGE_NAME ?= ghcr.io/ministryofjustice/analytical-platform-mlflow
+IMAGE_TAG  ?= local
 
 ct:
 	ct lint --charts chart
+
+scan: build
+	trivy image --vuln-type os,library --severity CRITICAL --exit-code 1 $(IMAGE_NAME)
+
+run: build
+	docker-compose --project-directory test --file test/docker-compose.yml up
+
+test: build
+	container-structure-test test --platform linux/amd64 --config test/container-structure-test.yml --image $(IMAGE_NAME):$(IMAGE_TAG)
+
+build:
+	@ARCH=`uname --machine`; \
+	case $$ARCH in \
+	aarch64 | arm64) \
+		echo "Building on $$ARCH architecture"; \
+		docker build --platform linux/amd64 --file Dockerfile --tag $(IMAGE_NAME):$(IMAGE_TAG) . ;; \
+	*) \
+		echo "Building on $$ARCH architecture"; \
+		docker build --file Dockerfile --tag $(IMAGE_NAME):$(IMAGE_TAG) . ;; \
+	esac
