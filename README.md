@@ -58,7 +58,3 @@ apt-cache policy ${PACKAGE} # for example curl, git or gpg
 ### MLflow
 
 <https://pypi.org/project/mlflow/>
-
-### Prometheus Flask Exporter
-
-<https://pypi.org/project/prometheus-flask-exporter/>
