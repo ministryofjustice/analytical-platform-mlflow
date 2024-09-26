@@ -1,5 +1,5 @@
 ---
-name: Scan Image
+name: 🩻 Scan
 
 on:
   pull_request:
@@ -9,49 +9,29 @@ on:
 permissions: {}
 
 jobs:
-  scan-image:
-    name: Scan Image
+  scan:
+    name: Scan
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      security-events: write
     steps:
       - name: Checkout
         id: checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
-      - name: Build Image
-        id: build_image
-        uses: docker/build-push-action@5cd11c3a4ced054e52742c5fd54dca954e0edd85 # v6.7.0
-        with:
-          push: false
-          load: true
-          tags: mlflow
+      - name: Build
+        id: build
+        shell: bash
+        env:
+          IMAGE_NAME: ghcr.io/${{ github.repository }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          make build
 
-      - name: Scan Image
-        id: scan_image
+      - name: Scan
+        id: scan
         uses: aquasecurity/trivy-action@6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8 # v0.24.0
         with:
-          image-ref: mlflow
+          image-ref: ghcr.io/${{ github.repository }}:${{ github.sha }}
+          severity: HIGH,CRITICAL
           exit-code: 1
-          format: sarif
-          output: trivy-results.sarif
-          severity: CRITICAL
-          limit-severities-for-sarif: true
-
-      - name: Scan Image (On SARIF Scan Failure)
-        if: failure() && steps.scan_image.outcome == 'failure'
-        id: scan_image_on_failure
-        uses: aquasecurity/trivy-action@6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8 # v0.24.0
-        with:
-          image-ref: mlflow
-          exit-code: 1
-          format: table
-          severity: CRITICAL
-
-      - name: Upload SARIF
-        if: always()
-        id: upload_sarif
-        uses: github/codeql-action/upload-sarif@294a9d92911152fe08befb9ec03e240add280cb3 # v3.26.8
-        with:
-          sarif_file: trivy-results.sarif
