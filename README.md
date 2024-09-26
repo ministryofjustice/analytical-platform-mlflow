@@ -4,6 +4,9 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ministryofjustice/analytical-platform-mlflow)
 
+> [!IMPORTANT]
+> MLflow on Analytical Platform is currently in discovery
+
 This repository contains the MLflow container image for use on the Analytical Platform.
 
 ## Running Locally
