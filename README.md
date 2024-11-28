@@ -58,3 +58,13 @@ apt-cache policy ${PACKAGE} # for example curl, git or gpg
 ### MLflow
 
 Dependabot is configured to manage the packages in [`src/opt/mlflow/requirements.txt`](src/opt/analytical-platform/requirements.txt)
+
+### GitHub OAuth2
+
+To add in the GitHub OAuth2 (using [mlflow-oauth-sidecar](https://github.com/cloudacode/mlflow-oauth-sidecar) approach).
+
+In `test/docker-compose.yml`:
+
+- update `OAUTH2_PROXY_REDIRECT_URL` value to be the forwarded address set by codespaces
+- update `OAUTH2_PROXY_COOKIE_SECRET` with a [generated cookie secret](https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview/#generating-a-cookie-secret)
+- update `OAUTH2_PROXY_CLIENT_ID` and `OAUTH2_PROXY_CLIENT_SECRET` with your OAuth app settings you can setup [here](https://github.com/settings/developers)

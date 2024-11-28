@@ -27,6 +27,5 @@ mlflow server ${MLFLOW_SERVER_DEV_MODE_FLAG} \
   --host "${MLFLOW_SERVER_HOST}" \
   --port "${MLFLOW_SERVER_PORT}" \
   --workers "${MLFLOW_SERVER_WORKERS}" \
-  --app-name basic-auth \
   --backend-store-uri "${MLFLOW_SERVER_BACKEND_STORE_URI}" \
   --default-artifact-root "${MLFLOW_SERVER_DEFAULT_ARTIFACT_ROOT}"
