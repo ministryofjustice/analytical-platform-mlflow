@@ -3,8 +3,8 @@ apiVersion: v2
 name: mlflow
 description: MLflow Tracking Server
 type: application
-version: 2.21.3-rc2
-appVersion: 2.21.3-rc2
+version: 2.21.3-rc3
+appVersion: 2.21.3-rc3
 home: https://github.com/ministryofjustice/analytical-platform-mlflow
 sources:
   - https://github.com/mlflow/mlflow
