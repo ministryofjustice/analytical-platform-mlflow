@@ -1,0 +1,22 @@
+---
+  name: 🔖 Chart Release
+
+  on:
+    push:
+      tags:
+        - "*"
+
+  permissions: {}
+
+  jobs:
+    chart-release:
+      name: Chart Release
+      permissions:
+        actions: read
+        attestations: write
+        contents: write
+        id-token: write
+        packages: write
+      uses: ministryofjustice/analytical-platform-github-actions/.github/workflows/reusable-chart-release.yml@717bc49d8f4f42fe1be43b8ee70f6de706413907 # TEST
+      with:
+        chart_name: mlflow

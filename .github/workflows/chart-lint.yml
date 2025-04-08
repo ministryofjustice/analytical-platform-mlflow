@@ -11,23 +11,6 @@ permissions: {}
 jobs:
   chart-lint:
     name: Chart Lint
-    runs-on: ubuntu-latest
     permissions:
       contents: read
-    steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Set Up Helm
-        id: setup_helm
-        uses: azure/setup-helm@fe7b79cd5ee1e45176fcad797de68ecaf3ca4814 # v4.2.0
-
-      - name: Set Up Helm Chart Testing
-        id: setup_chart_testing
-        uses: helm/chart-testing-action@e6669bcd63d7cb57cb4380c33043eebe5d111992 # v2.6.1
-
-      - name: Lint Chart
-        id: lint_chart
-        run: |
-          make ct
+    uses: ministryofjustice/analytical-platform-github-actions/.github/workflows/reusable-chart-lint.yml@717bc49d8f4f42fe1be43b8ee70f6de706413907 # TEST
