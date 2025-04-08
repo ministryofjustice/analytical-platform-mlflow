@@ -29,6 +29,7 @@ services:
       # MLFLOW_SERVER_DEV_MODE: "true"
       MLFLOW_AUTH_DATABASE_URI: postgresql://mlflow:mlflow@mlflow_auth_db:5432/mlflow
       MLFLOW_SERVER_BACKEND_STORE_URI: postgresql://mlflow:mlflow@mlflow_db:5432/mlflow
+      MLFLOW_FLASK_SERVER_SECRET_KEY: NRhgkMljooBjncjy9i98Jl2mDS1OUG4i
     ports:
       - "5000:5000"
     depends_on:
