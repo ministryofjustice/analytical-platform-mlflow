@@ -37,7 +37,7 @@ commandTests:
   - name: "mlflow"
     command: "mlflow"
     args: ["--version"]
-    expectedOutput: ["mlflow, version 2.16.2"]
+    expectedOutput: ["mlflow, version 2.21.3"]
 
 fileExistenceTests:
   - name: "/opt/mlflow"
