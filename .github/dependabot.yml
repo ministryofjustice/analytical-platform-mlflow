@@ -30,3 +30,7 @@ updates:
     commit-message:
       prefix: ":dependabot: pip"
       include: "scope"
+    groups:
+      mlflow:
+        patterns:
+          - "mlflow*"
