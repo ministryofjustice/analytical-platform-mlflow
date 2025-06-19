@@ -24,7 +24,7 @@ updates:
       prefix: ":dependabot: docker"
       include: "scope"
   - package-ecosystem: "pip"
-    directory: "src/opt/mlflow/requirements.txt"
+    directory: "/src/opt/mlflow"
     schedule:
       interval: "daily"
     commit-message:
