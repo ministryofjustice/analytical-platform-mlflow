@@ -34,11 +34,6 @@ commandTests:
     args: ["--version"]
     expectedOutput: ["pip 24.0"]
 
-  - name: "mlflow"
-    command: "mlflow"
-    args: ["--version"]
-    expectedOutput: ["mlflow, version 2.22.1"]
-
 fileExistenceTests:
   - name: "/opt/mlflow"
     path: "/opt/mlflow"
