@@ -41,6 +41,8 @@ apt-get clean --yes
 
 rm --force --recursive /var/lib/apt/lists/*
 
+ln -s /usr/bin/python3.12 /usr/bin/python3
+
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 install --directory --owner ${CONTAINER_USER} --group ${CONTAINER_GROUP} --mode 0755 ${MLFLOW_ROOT}
