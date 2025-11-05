@@ -11,7 +11,8 @@ ENV CONTAINER_USER="analyticalplatform" \
     CONTAINER_GROUP="analyticalplatform" \
     CONTAINER_GID="1000" \
     DEBIAN_FRONTEND="noninteractive" \
-    MLFLOW_ROOT="/opt/mlflow"
+    MLFLOW_ROOT="/opt/mlflow" \
+    UV_VERSION="0.5.11"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
@@ -42,13 +43,35 @@ apt-get clean --yes
 rm --force --recursive /var/lib/apt/lists/*
 
 ln -s /usr/bin/python3.12 /usr/bin/python3
-
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-install --directory --owner ${CONTAINER_USER} --group ${CONTAINER_GROUP} --mode 0755 ${MLFLOW_ROOT}
 EOF
 
-ENV PATH="/root/.local/bin:${PATH}"
+# uv
+RUN <<EOF
+ARCH="$(uname -m)"
+if [ "${ARCH}" = "x86_64" ]; then
+  UV_ARCH="x86_64-unknown-linux-gnu"
+elif [ "${ARCH}" = "aarch64" ]; then
+  UV_ARCH="aarch64-unknown-linux-gnu"
+else
+  echo "Unsupported architecture: ${ARCH}" && exit 1
+fi
+
+curl --location --fail-with-body \
+  "https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-${UV_ARCH}.tar.gz" \
+  --output uv.tar.gz
+
+tar --extract --file uv.tar.gz
+
+install --owner nobody --group nogroup --mode 0755 "uv-${UV_ARCH}/uv" /usr/local/bin/uv
+
+install --owner nobody --group nogroup --mode 0755 "uv-${UV_ARCH}/uvx" /usr/local/bin/uvx
+
+rm --force --recursive uv.tar.gz "uv-${UV_ARCH}"
+EOF
+
+RUN <<EOF
+install --directory --owner ${CONTAINER_USER} --group ${CONTAINER_GROUP} --mode 0755 ${MLFLOW_ROOT}
+EOF
 
 COPY --chown=${CONTAINER_USER}:${CONTAINER_GROUP} src${MLFLOW_ROOT}/requirements.txt ${MLFLOW_ROOT}/requirements.txt
 RUN <<EOF
