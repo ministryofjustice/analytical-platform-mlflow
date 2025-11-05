@@ -34,20 +34,23 @@ apt-get update --yes
 apt-get install --no-install-recommends --yes \
   "ca-certificates=20240203" \
   "curl=8.5.0-2ubuntu10.6" \
-  "libpq-dev=16.9-0ubuntu0.24.04.1" \
-  "python3.12=3.12.3-1ubuntu0.7" \
-  "python3-pip=24.0+dfsg-1ubuntu1.2"
+  "libpq-dev=16.10-0ubuntu0.24.04.1" \
+  "python3.12=3.12.3-1ubuntu0.8"
 
 apt-get clean --yes
 
 rm --force --recursive /var/lib/apt/lists/*
 
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 install --directory --owner ${CONTAINER_USER} --group ${CONTAINER_GROUP} --mode 0755 ${MLFLOW_ROOT}
 EOF
 
+ENV PATH="/root/.local/bin:${PATH}"
+
 COPY --chown=${CONTAINER_USER}:${CONTAINER_GROUP} src${MLFLOW_ROOT}/requirements.txt ${MLFLOW_ROOT}/requirements.txt
 RUN <<EOF
-pip install --break-system-packages --no-cache-dir --requirement ${MLFLOW_ROOT}/requirements.txt
+uv pip install --python /usr/bin/python3.12 --system --break-system-packages --no-cache --requirement ${MLFLOW_ROOT}/requirements.txt
 EOF
 
 USER ${CONTAINER_USER}
