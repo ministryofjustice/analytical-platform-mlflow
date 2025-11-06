@@ -36,7 +36,7 @@ apt-get install --no-install-recommends --yes \
   "ca-certificates=20240203" \
   "curl=8.5.0-2ubuntu10.6" \
   "libpq-dev=16.10-0ubuntu0.24.04.1" \
-  "python3.12=3.12.3-1ubuntu0.8" \
+  "python3.12=3.12.3-1ubuntu0.8"
 
 apt-get clean --yes
 
