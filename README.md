@@ -10,6 +10,7 @@
 > **This deployment is not production-ready in its current state.**
 >
 > Trivy security scanning has identified multiple HIGH risk security issues in the Helm chart configuration, including:
+>
 > - Missing security contexts (privilege escalation, root access)
 > - Writable root filesystems
 > - Missing seccomp profiles
