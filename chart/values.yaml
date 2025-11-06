@@ -37,18 +37,36 @@ podAnnotations: {}
 
 podLabels: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+  seccompProfile:
+    type: RuntimeDefault
 
 replicaCount: 1
 
-securityContext: {}
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
 
 readinessProbe:
   httpGet:
     path: /health
     port: http
 
-resources: {}
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 100m
+    memory: 256Mi
 
 service:
   type: ClusterIP
@@ -67,6 +85,14 @@ serviceMonitor:
 
 tolerations: []
 
-volumes: []
+volumes:
+  - name: tmp
+    emptyDir: {}
+  - name: mlflow-data
+    emptyDir: {}
 
-volumeMounts: []
+volumeMounts:
+  - name: tmp
+    mountPath: /tmp
+  - name: mlflow-data
+    mountPath: /opt/mlflow/data
