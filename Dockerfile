@@ -12,7 +12,7 @@ ENV CONTAINER_USER="analyticalplatform" \
     CONTAINER_GID="1000" \
     DEBIAN_FRONTEND="noninteractive" \
     MLFLOW_ROOT="/opt/mlflow" \
-    UV_VERSION="0.5.11"
+    UV_VERSION="0.9.7"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
