@@ -37,7 +37,7 @@ apt-get install --no-install-recommends --yes \
   "curl=8.5.0-2ubuntu10.6" \
   "libpq-dev=16.10-0ubuntu0.24.04.1" \
   "python3.12=3.12.3-1ubuntu0.8" \
-  
+
 apt-get clean --yes
 
 rm --force --recursive /var/lib/apt/lists/*
@@ -47,26 +47,17 @@ EOF
 
 # uv
 RUN <<EOF
-ARCH="$(uname -m)"
-if [ "${ARCH}" = "x86_64" ]; then
-  UV_ARCH="x86_64-unknown-linux-gnu"
-elif [ "${ARCH}" = "aarch64" ]; then
-  UV_ARCH="aarch64-unknown-linux-gnu"
-else
-  echo "Unsupported architecture: ${ARCH}" && exit 1
-fi
-
 curl --location --fail-with-body \
-  "https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-${UV_ARCH}.tar.gz" \
+  "https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-x86_64-unknown-linux-gnu.tar.gz" \
   --output uv.tar.gz
 
 tar --extract --file uv.tar.gz
 
-install --owner nobody --group nogroup --mode 0755 "uv-${UV_ARCH}/uv" /usr/local/bin/uv
+install --owner nobody --group nogroup --mode 0755 uv-x86_64-unknown-linux-gnu/uv /usr/local/bin/uv
 
-install --owner nobody --group nogroup --mode 0755 "uv-${UV_ARCH}/uvx" /usr/local/bin/uvx
+install --owner nobody --group nogroup --mode 0755 uv-x86_64-unknown-linux-gnu/uvx /usr/local/bin/uvx
 
-rm --force --recursive uv.tar.gz "uv-${UV_ARCH}"
+rm --force --recursive uv.tar.gz uv-x86_64-unknown-linux-gnu
 EOF
 
 RUN <<EOF
