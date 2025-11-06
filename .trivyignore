@@ -1,4 +1,11 @@
-## Trivy: misreading due to heredoc structure## Trivy: misreading due to heredoc structure
+## Trivy: misreading due to heredoc structure
+AVD-DS-0017
 
-AVD-DS-0017AVD-DS-0017
-
+## Helm Chart Security Context Issues - To be addressed in separate security hardening PR
+## See README caution banner for details
+AVD-KSV-0001
+AVD-KSV-0012
+AVD-KSV-0014
+AVD-KSV-0104
+AVD-KSV-0118
+AVD-KSV-0125

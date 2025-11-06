@@ -6,6 +6,16 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ministryofjustice/analytical-platform-mlflow)
 
+> [!CAUTION]
+> **This deployment is not production-ready in its current state.**
+>
+> Trivy security scanning has identified multiple HIGH risk security issues in the Helm chart configuration, including:
+> - Missing security contexts (privilege escalation, root access)
+> - Writable root filesystems
+> - Missing seccomp profiles
+>
+> These issues must be addressed before deploying to production environments.
+
 > [!IMPORTANT]
 > MLflow on Analytical Platform is currently in discovery
 
