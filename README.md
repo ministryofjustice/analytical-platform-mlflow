@@ -14,7 +14,6 @@
 > - Missing security contexts (privilege escalation, root access)
 > - Writable root filesystems
 > - Missing seccomp profiles
->
 > These issues must be addressed before deploying to production environments.
 
 > [!IMPORTANT]
