@@ -9,3 +9,6 @@ AVD-KSV-0125
 
 ## UID below 10000 (accepted for compatibility)
 AVD-KSV-0020
+
+## GID below 10000 (accepted for compatibility)
+AVD-KSV-0021
