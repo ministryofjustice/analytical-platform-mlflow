@@ -1,11 +1,5 @@
 ## Trivy: misreading due to heredoc structure
 AVD-DS-0017
 
-## Helm Chart Security Context Issues - To be addressed in separate security hardening PR
-## See README caution banner for details
-AVD-KSV-0001
-AVD-KSV-0012
+## readOnlyRootFilesystem requires entrypoint changes - deferred to avoid scope creep
 AVD-KSV-0014
-AVD-KSV-0104
-AVD-KSV-0118
-AVD-KSV-0125
