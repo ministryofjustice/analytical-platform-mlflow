@@ -6,3 +6,6 @@ AVD-KSV-0014
 
 ## Untrusted registry warning (ghcr.io/ministryofjustice is trusted for this project)
 AVD-KSV-0125
+
+## UID below 10000 (accepted for compatibility)
+AVD-KSV-0020
