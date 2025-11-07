@@ -1,9 +1,6 @@
 ## Trivy: misreading due to heredoc structure
 AVD-DS-0017
 
-## readOnlyRootFilesystem requires entrypoint changes - deferred to avoid scope creep
-AVD-KSV-0014
-
 ## Untrusted registry warning (ghcr.io/ministryofjustice is trusted for this project)
 AVD-KSV-0125
 
