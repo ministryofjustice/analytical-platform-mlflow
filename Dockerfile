@@ -15,6 +15,7 @@ ENV CONTAINER_USER="analyticalplatform" \
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
+# trivy:ignore:AVD-DS-0017 Trivy does not understand the HEREDOC syntax used below
 RUN <<EOF
 userdel --remove --force ubuntu
 
