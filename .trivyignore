@@ -1,0 +1,9 @@
+# MLflow requires write access to filesystem for auth configuration
+AVD-KSV-0014
+
+# ghcr.io is the organization's trusted container registry
+AVD-KSV-0125
+
+# Container uses 1000 as UID/GID, not in scope for changing this
+AVD-KSV-0020
+AVD-KSV-0021
