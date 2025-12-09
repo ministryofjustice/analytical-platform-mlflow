@@ -1,11 +1,9 @@
-## Trivy: misreading due to heredoc structure
-AVD-DS-0017
+# MLflow requires write access to filesystem for auth configuration
+AVD-KSV-0014
 
-## Untrusted registry warning (ghcr.io/ministryofjustice is trusted for this project)
+# ghcr.io is the organization's trusted container registry
 AVD-KSV-0125
 
-## UID below 10000 (accepted for compatibility)
+# Container uses 1000 as UID/GID, not in scope for changing this
 AVD-KSV-0020
-
-## GID below 10000 (accepted for compatibility)
 AVD-KSV-0021
