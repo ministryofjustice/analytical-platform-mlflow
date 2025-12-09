@@ -27,10 +27,10 @@ else
   MLFLOW_SERVER_DEV_MODE_FLAG=""
 fi
 
-if [[ "${MLFLOW_SERVER_BACKEND_STORE_URI}" == "postgresql://"* ]]; then
-  echo "Running database migrations"
-  mlflow db upgrade "${MLFLOW_SERVER_BACKEND_STORE_URI}"
-fi
+# if [[ "${MLFLOW_SERVER_BACKEND_STORE_URI}" == "postgresql://"* ]]; then
+#   echo "Running database migrations"
+#   mlflow db upgrade "${MLFLOW_SERVER_BACKEND_STORE_URI}"
+# fi
 
 echo "Starting MLflow server"
 mlflow server ${MLFLOW_SERVER_DEV_MODE_FLAG} \

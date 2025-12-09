@@ -1,7 +1,7 @@
 ---
 services:
   mlflow_auth_db:
-    image: public.ecr.aws/docker/library/postgres:16.9-alpine3.22
+    image: public.ecr.aws/docker/library/postgres:16.11-alpine3.23
     environment:
       POSTGRES_USER: mlflow
       POSTGRES_PASSWORD: mlflow
@@ -12,7 +12,7 @@ services:
       timeout: 5s
       retries: 5
   mlflow_db:
-    image: public.ecr.aws/docker/library/postgres:16.9-alpine3.22
+    image: public.ecr.aws/docker/library/postgres:16.11-alpine3.23
     environment:
       POSTGRES_USER: mlflow
       POSTGRES_PASSWORD: mlflow
