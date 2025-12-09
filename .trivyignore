@@ -1,0 +1,5 @@
+# MLflow requires write access to filesystem for auth configuration
+AVD-KSV-0014
+
+# ghcr.io is the organization's trusted container registry
+AVD-KSV-0125
