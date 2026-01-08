@@ -11,7 +11,8 @@ ENV CONTAINER_USER="analyticalplatform" \
     CONTAINER_GROUP="analyticalplatform" \
     CONTAINER_GID="1000" \
     DEBIAN_FRONTEND="noninteractive" \
-    MLFLOW_ROOT="/opt/mlflow"
+    MLFLOW_ROOT="/opt/mlflow" \
+    UV_VERSION="0.9.7"
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
@@ -36,19 +37,37 @@ apt-get install --no-install-recommends --yes \
   "ca-certificates=20240203" \
   "curl=8.5.0-2ubuntu10.6" \
   "libpq-dev=16.11-0ubuntu0.24.04.1" \
-  "python3.12=3.12.3-1ubuntu0.9" \
-  "python3-pip=24.0+dfsg-1ubuntu1.3"
+  "python3.12=3.12.3-1ubuntu0.9"
 
 apt-get clean --yes
 
 rm --force --recursive /var/lib/apt/lists/*
 
+ln -s /usr/bin/python3.12 /usr/bin/python3
+EOF
+
+# uv
+RUN <<EOF
+curl --location --fail-with-body \
+  "https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/uv-x86_64-unknown-linux-gnu.tar.gz" \
+  --output uv.tar.gz
+
+tar --extract --file uv.tar.gz
+
+install --owner nobody --group nogroup --mode 0755 uv-x86_64-unknown-linux-gnu/uv /usr/local/bin/uv
+
+install --owner nobody --group nogroup --mode 0755 uv-x86_64-unknown-linux-gnu/uvx /usr/local/bin/uvx
+
+rm --force --recursive uv.tar.gz uv-x86_64-unknown-linux-gnu
+EOF
+
+RUN <<EOF
 install --directory --owner ${CONTAINER_USER} --group ${CONTAINER_GROUP} --mode 0755 ${MLFLOW_ROOT}
 EOF
 
 COPY --chown=${CONTAINER_USER}:${CONTAINER_GROUP} src${MLFLOW_ROOT}/requirements.txt ${MLFLOW_ROOT}/requirements.txt
 RUN <<EOF
-pip install --break-system-packages --no-cache-dir --requirement ${MLFLOW_ROOT}/requirements.txt
+uv pip install --python /usr/bin/python3.12 --system --break-system-packages --no-cache --requirement ${MLFLOW_ROOT}/requirements.txt
 EOF
 
 USER ${CONTAINER_USER}
