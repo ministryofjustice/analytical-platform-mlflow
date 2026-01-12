@@ -3,3 +3,4 @@ mlflow==3.8.1
 mlflow[auth]==3.8.1
 psycopg2-binary==2.9.11
 h11==0.16.0
+urllib3==2.6.3
