@@ -7,3 +7,6 @@ AVD-KSV-0125
 # Container uses 1000 as UID/GID, not in scope for changing this
 AVD-KSV-0020
 AVD-KSV-0021
+
+## CVE-2026-23490 - (python dependency - pyasn1)
+# CVE-2026-23490
