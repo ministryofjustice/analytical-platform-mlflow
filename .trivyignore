@@ -7,3 +7,6 @@ AVD-KSV-0125
 # Container uses 1000 as UID/GID, not in scope for changing this
 AVD-KSV-0020
 AVD-KSV-0021
+
+# CVE-2026-0994 (Protobuf)
+CVE-2026-0994 exp:2026-02-14
