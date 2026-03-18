@@ -37,7 +37,7 @@ apt-get install --no-install-recommends --yes \
   "curl=8.5.0-2ubuntu10.6" \
   "gpgv=2.4.4-2ubuntu17.4" \
   "libpq-dev=16.11-0ubuntu0.24.04.1" \
-  "python3.12=3.12.3-1ubuntu0.11" \
+  "python3.12=3.12.3-1ubuntu0.12" \
   "python3-pip=24.0+dfsg-1ubuntu1.3"
 
 apt-get clean --yes
