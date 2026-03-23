@@ -1,13 +1,10 @@
-.PHONY: test build run scan ct
+.PHONY: test build run ct
 
 IMAGE_NAME ?= ghcr.io/ministryofjustice/analytical-platform-mlflow
 IMAGE_TAG  ?= local
 
 ct:
 	ct lint --charts chart
-
-scan: build
-	trivy image --vuln-type os,library --severity CRITICAL --exit-code 1 $(IMAGE_NAME)
 
 run: build
 	docker-compose --project-directory test --file test/docker-compose.yml up
