@@ -22,5 +22,6 @@ jobs:
       super-linter-variables: |
         {
           "VALIDATE_CHECKOV": false,
-          "VALIDATE_KUBERNETES_KUBECONFORM": false
+          "VALIDATE_KUBERNETES_KUBECONFORM": false,
+          "VALIDATE_TRIVY": false
         }

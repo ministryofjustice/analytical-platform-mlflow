@@ -1,4 +1,4 @@
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:2840d5f4a6a1a8eb11e0d493bf0bbc030442d48e902e99bbc7127b76f9775b1e
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:8c10ecc59261c77dd866fa8587f1b9cbf172ad8f1253f0af96eaae0fa390c132
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform (analytical-platform@digital.justice.gov.uk)" \
@@ -34,10 +34,10 @@ apt-get update --yes
 
 apt-get install --no-install-recommends --yes \
   "ca-certificates=20240203" \
-  "curl=8.5.0-2ubuntu10.8" \
+  "curl=8.5.0-2ubuntu10.9" \
   "gpgv=2.4.4-2ubuntu17.4" \
-  "libpq-dev=16.13-0ubuntu0.24.04.1" \
-  "python3.12=3.12.3-1ubuntu0.12" \
+  "libpq-dev=16.14-0ubuntu0.24.04.1" \
+  "python3.12=3.12.3-1ubuntu0.13" \
   "python3-pip=24.0+dfsg-1ubuntu1.3"
 
 apt-get clean --yes
