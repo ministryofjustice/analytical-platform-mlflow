@@ -15,6 +15,7 @@ jobs:
       contents: read
       packages: read
       statuses: write
+      pull-requests: write
     uses: ministryofjustice/analytical-platform-github-actions/.github/workflows/reusable-super-linter.yml@bc0d450d55cc014693437d793b797b7b0e281db4 # v7.3.1
     with:
       # VALIDATE_CHECKOV: false # Disabling while in discovery
