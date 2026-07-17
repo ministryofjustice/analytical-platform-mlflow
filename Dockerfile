@@ -36,7 +36,13 @@ apt-get install --no-install-recommends --yes \
   "ca-certificates=20260601~24.04.1" \
   "curl=8.5.0-2ubuntu10.11" \
   "gpgv=2.4.4-2ubuntu17.4" \
+  "gzip=1.12-1ubuntu3.2" \
   "libpq-dev=16.14-0ubuntu0.24.04.1" \
+  "libncursesw6=6.4+20240113-1ubuntu2.1" \
+  "libtinfo6=6.4+20240113-1ubuntu2.1" \
+  "ncurses-base=6.4+20240113-1ubuntu2.1" \
+  "ncurses-bin=6.4+20240113-1ubuntu2.1" \
+  "perl=5.38.2-3.2ubuntu0.3" \
   "python3.12=3.12.3-1ubuntu0.15" \
   "python3-pip=24.0+dfsg-1ubuntu1.3"
 
