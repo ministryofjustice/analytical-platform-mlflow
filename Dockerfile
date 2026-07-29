@@ -32,6 +32,10 @@ useradd \
 
 apt-get update --yes
 
+apt-get install --no-install-recommends --yes --only-upgrade \
+  "libc-bin=2.39-0ubuntu8.8" \
+  "libc6=2.39-0ubuntu8.8"
+
 apt-get install --no-install-recommends --yes \
   "ca-certificates=20260601~24.04.1" \
   "curl=8.5.0-2ubuntu10.11" \
