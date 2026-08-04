@@ -1,0 +1,20 @@
+# Grype configuration file for container vulnerability scanning
+# https://github.com/anchore/grype#configuration
+
+ignore:
+  # cryptography GHSA-g6cj-pr64-35w5 (CVE-2026-69247): fix requires cryptography>=50.0.0,
+  # but mlflow[auth]==3.14.0 pins cryptography<49,>=43.0.0 (confirmed against mlflow's
+  # own release metadata, which caps cryptography<47 even on master as of this scan).
+  # No version of cryptography satisfies both constraints — this is a hard pip resolver
+  # conflict, not a version we chose not to bump. Remediation is blocked on mlflow lifting
+  # its cryptography ceiling upstream. Tracking mlflow for a release that allows >=50.
+  - vulnerability: GHSA-g6cj-pr64-35w5
+    package:
+      type: python
+      name: cryptography
+    reason: "mlflow[auth]==3.14.0 caps cryptography<49; CVE fix requires cryptography>=50.0.0. Upstream mlflow dependency conflict, no resolvable pip combination exists. exp:2026-09-01"
+  - vulnerability: CVE-2026-69247
+    package:
+      type: python
+      name: cryptography
+    reason: "Same finding as GHSA-g6cj-pr64-35w5 (CVE alias); mlflow[auth]==3.14.0 caps cryptography<49, fix requires >=50.0.0. Tracking upstream mlflow release. exp:2026-09-01"
