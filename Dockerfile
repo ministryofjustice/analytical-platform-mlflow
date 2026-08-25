@@ -38,7 +38,7 @@ apt-get install --no-install-recommends --yes --only-upgrade \
 
 apt-get install --no-install-recommends --yes \
   "ca-certificates=20260601~24.04.1" \
-  "curl=8.5.0-2ubuntu10.12" \
+  "curl=8.5.0-2ubuntu10.13" \
   "gpgv=2.4.4-2ubuntu17.4" \
   "gzip=1.12-1ubuntu3.2" \
   "libncursesw6=6.4+20240113-1ubuntu2.1" \
