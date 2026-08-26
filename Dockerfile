@@ -47,7 +47,7 @@ apt-get install --no-install-recommends --yes \
   "ncurses-base=6.4+20240113-1ubuntu2.1" \
   "ncurses-bin=6.4+20240113-1ubuntu2.1" \
   "perl-base=5.38.2-3.2ubuntu0.3" \
-  "python3.12=3.12.3-1ubuntu0.15" \
+  "python3.12=3.12.3-1ubuntu0.16" \
   "python3-pip=24.0+dfsg-1ubuntu1.3"
 
 apt-get clean --yes
