@@ -18,3 +18,8 @@ ignore:
       type: python
       name: cryptography
     reason: "Same finding as GHSA-g6cj-pr64-35w5 (CVE alias); mlflow[auth]==3.14.0 caps cryptography<49, fix requires >=50.0.0. Tracking upstream mlflow release. exp:2026-09-01"
+  - vulnerability: CVE-2026-54371
+    package:
+      type: deb
+      name: libattr1
+    reason: "Transient dependency of libpq-dev; fixed in libattr1 1:2.5.2-1ubuntu0.1. Awaiting automatic Ubuntu package propagation. exp:2026-10-01"
