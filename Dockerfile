@@ -30,6 +30,14 @@ useradd \
   --shell /bin/bash \
   ${CONTAINER_USER}
 
+# Add the Azure mirror as a fallback (reachable from GitHub-hosted runners when the canonical archive is unavailable)
+sed -i \
+  -e "s|^URIs: http://archive.ubuntu.com/ubuntu/|URIs: http://archive.ubuntu.com/ubuntu/ https://azure.archive.ubuntu.com/ubuntu/|" \
+  -e "s|^URIs: http://security.ubuntu.com/ubuntu/|URIs: http://security.ubuntu.com/ubuntu/ https://azure.archive.ubuntu.com/ubuntu/|" \
+  /etc/apt/sources.list.d/ubuntu.sources
+
+printf 'Acquire::Retries "5";\nAcquire::http::Timeout "20";\nAcquire::https::Timeout "20";\n' > /etc/apt/apt.conf.d/99-retries
+
 apt-get update --yes
 
 apt-get install --no-install-recommends --yes --only-upgrade \
