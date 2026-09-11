@@ -33,21 +33,21 @@ useradd \
 apt-get update --yes
 
 apt-get install --no-install-recommends --yes --only-upgrade \
-  "libc-bin=2.39-0ubuntu8.8" \
-  "libc6=2.39-0ubuntu8.8"
+  "libc-bin=2.39-0ubuntu8.9" \
+  "libc6=2.39-0ubuntu8.9"
 
 apt-get install --no-install-recommends --yes \
   "ca-certificates=20260601~24.04.1" \
   "curl=8.5.0-2ubuntu10.13" \
-  "gpgv=2.4.4-2ubuntu17.4" \
+  "gpgv=2.4.4-2ubuntu17.6" \
   "gzip=1.12-1ubuntu3.2" \
-  "libncursesw6=6.4+20240113-1ubuntu2.1" \
+  "libncursesw6=6.4+20240113-1ubuntu2.2" \
   "libpq-dev=16.15-0ubuntu0.24.04.1" \
-  "libtinfo6=6.4+20240113-1ubuntu2.1" \
-  "ncurses-base=6.4+20240113-1ubuntu2.1" \
-  "ncurses-bin=6.4+20240113-1ubuntu2.1" \
+  "libtinfo6=6.4+20240113-1ubuntu2.2" \
+  "ncurses-base=6.4+20240113-1ubuntu2.2" \
+  "ncurses-bin=6.4+20240113-1ubuntu2.2" \
   "perl-base=5.38.2-3.2ubuntu0.4" \
-  "python3.12=3.12.3-1ubuntu0.16" \
+  "python3.12=3.12.3-1ubuntu0.17" \
   "python3-pip=24.0+dfsg-1ubuntu1.3"
 
 apt-get clean --yes
