@@ -30,6 +30,9 @@ useradd \
   --shell /bin/bash \
   ${CONTAINER_USER}
 
+# Make apt resilient to transient mirror timeouts in CI
+printf 'Acquire::Retries "5";\nAcquire::http::Timeout "30";\nAcquire::https::Timeout "30";\n' > /etc/apt/apt.conf.d/99-retries
+
 apt-get update --yes
 
 apt-get install --no-install-recommends --yes --only-upgrade \
