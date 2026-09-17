@@ -1,4 +1,4 @@
-FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:a54764b5b6340c272ffb45e303fe4c8064bbdfb76d732b325b79ae6b92900e4c
+FROM public.ecr.aws/ubuntu/ubuntu:24.04@sha256:bd96226c844259db876a6041a99d9a5aad65b3bfdb8df039441b17bbc4f756b8
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform (analytical-platform@digital.justice.gov.uk)" \
@@ -46,7 +46,7 @@ apt-get install --no-install-recommends --yes \
   "libtinfo6=6.4+20240113-1ubuntu2.2" \
   "ncurses-base=6.4+20240113-1ubuntu2.2" \
   "ncurses-bin=6.4+20240113-1ubuntu2.2" \
-  "perl-base=5.38.2-3.2ubuntu0.4" \
+  "perl-base=5.38.2-3.2ubuntu0.6" \
   "python3.12=3.12.3-1ubuntu0.17" \
   "python3-pip=24.0+dfsg-1ubuntu1.3"
 
