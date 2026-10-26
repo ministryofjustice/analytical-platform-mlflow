@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:24.04@sha256:f610ab94648195aa356059f5b41d6085c9d4d903c072430cdd1af7bdb646106b
+FROM docker.io/library/ubuntu:24.04@sha256:68ee22004a9109b44973313b02ff7b1de250f1de0f5ecb628d73f579aaff33ac
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Analytical Platform (analytical-platform@digital.justice.gov.uk)" \
@@ -33,8 +33,10 @@ useradd \
 apt-get update --yes
 
 apt-get install --no-install-recommends --yes --only-upgrade \
+  "libattr1=1:2.5.2-1ubuntu0.1" \
   "libc-bin=2.39-0ubuntu8.9" \
-  "libc6=2.39-0ubuntu8.9"
+  "libc6=2.39-0ubuntu8.9" \
+  "zlib1g=1:1.3.dfsg-3.1ubuntu2.3"
 
 apt-get install --no-install-recommends --yes \
   "ca-certificates=20260816ubuntu0.24.04.1" \
