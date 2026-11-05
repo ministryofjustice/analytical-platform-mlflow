@@ -46,6 +46,7 @@ apt-get install --no-install-recommends --yes \
   "libncursesw6=6.4+20240113-1ubuntu2.2" \
   "libpq-dev=16.15-0ubuntu0.24.04.1" \
   "libtinfo6=6.4+20240113-1ubuntu2.2" \
+  "libpcre2-8-0=10.42-4ubuntu2.2" \
   "ncurses-base=6.4+20240113-1ubuntu2.2" \
   "ncurses-bin=6.4+20240113-1ubuntu2.2" \
   "perl-base=5.38.2-3.2ubuntu0.6" \
