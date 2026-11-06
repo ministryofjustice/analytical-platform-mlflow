@@ -39,7 +39,7 @@ apt-get install --no-install-recommends --yes --only-upgrade \
   "zlib1g=1:1.3.dfsg-3.1ubuntu2.3"
 
 apt-get install --no-install-recommends --yes \
-  "ca-certificates=20260816ubuntu0.24.04.1" \
+  "ca-certificates=20260816ubuntu0.24.04.2" \
   "curl=8.5.0-2ubuntu10.16" \
   "gpgv=2.4.4-2ubuntu17.6" \
   "gzip=1.12-1ubuntu3.2" \
