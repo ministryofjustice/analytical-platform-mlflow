@@ -33,6 +33,8 @@ useradd \
 apt-get update --yes
 
 apt-get install --no-install-recommends --yes --only-upgrade \
+  "apt=2.8.4ubuntu0.1" \
+  "libapt-pkg6.0t64=2.8.4ubuntu0.1" \
   "libattr1=1:2.5.2-1ubuntu0.1" \
   "libc-bin=2.39-0ubuntu8.9" \
   "libc6=2.39-0ubuntu8.9" \
