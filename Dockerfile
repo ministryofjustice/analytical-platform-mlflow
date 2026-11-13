@@ -51,7 +51,7 @@ apt-get install --no-install-recommends --yes \
   "libpcre2-8-0=10.42-4ubuntu2.2" \
   "ncurses-base=6.4+20240113-1ubuntu2.2" \
   "ncurses-bin=6.4+20240113-1ubuntu2.2" \
-  "perl-base=5.38.2-3.2ubuntu0.6" \
+  "perl-base=5.38.2-3.2ubuntu0.7" \
   "python3.12=3.12.3-1ubuntu0.17" \
   "python3-pip=24.0+dfsg-1ubuntu1.3"
 
