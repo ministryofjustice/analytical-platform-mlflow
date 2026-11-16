@@ -36,8 +36,8 @@ apt-get install --no-install-recommends --yes --only-upgrade \
   "apt=2.8.4ubuntu0.1" \
   "libapt-pkg6.0t64=2.8.4ubuntu0.1" \
   "libattr1=1:2.5.2-1ubuntu0.1" \
-  "libc-bin=2.39-0ubuntu8.9" \
-  "libc6=2.39-0ubuntu8.9" \
+  "libc-bin=2.39-0ubuntu8.12" \
+  "libc6=2.39-0ubuntu8.12" \
   "zlib1g=1:1.3.dfsg-3.1ubuntu2.3"
 
 apt-get install --no-install-recommends --yes \
@@ -51,7 +51,7 @@ apt-get install --no-install-recommends --yes \
   "libpcre2-8-0=10.42-4ubuntu2.2" \
   "ncurses-base=6.4+20240113-1ubuntu2.2" \
   "ncurses-bin=6.4+20240113-1ubuntu2.2" \
-  "perl-base=5.38.2-3.2ubuntu0.6" \
+  "perl-base=5.38.2-3.2ubuntu0.7" \
   "python3.12=3.12.3-1ubuntu0.17" \
   "python3-pip=24.0+dfsg-1ubuntu1.3"
 
