@@ -36,8 +36,8 @@ apt-get install --no-install-recommends --yes --only-upgrade \
   "apt=2.8.4ubuntu0.1" \
   "libapt-pkg6.0t64=2.8.4ubuntu0.1" \
   "libattr1=1:2.5.2-1ubuntu0.1" \
-  "libc-bin=2.39-0ubuntu8.9" \
-  "libc6=2.39-0ubuntu8.9" \
+  "libc-bin=2.39-0ubuntu8.12" \
+  "libc6=2.39-0ubuntu8.12" \
   "zlib1g=1:1.3.dfsg-3.1ubuntu2.3"
 
 apt-get install --no-install-recommends --yes \
