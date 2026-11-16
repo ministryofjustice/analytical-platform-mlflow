@@ -1,27 +1,19 @@
 ---
+x-postgres: &postgres
+  image: public.ecr.aws/docker/library/postgres:16.11-alpine3.23
+  environment:
+    POSTGRES_USER: mlflow
+    POSTGRES_PASSWORD: mlflow
+    POSTGRES_DB: mlflow
+  healthcheck:
+    test: ["CMD-SHELL", "pg_isready -U mlflow"]
+    interval: 5s
+    timeout: 5s
+    retries: 5
+
 services:
-  mlflow_auth_db:
-    image: public.ecr.aws/docker/library/postgres:16.11-alpine3.23
-    environment:
-      POSTGRES_USER: mlflow
-      POSTGRES_PASSWORD: mlflow
-      POSTGRES_DB: mlflow
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U mlflow"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-  mlflow_db:
-    image: public.ecr.aws/docker/library/postgres:16.11-alpine3.23
-    environment:
-      POSTGRES_USER: mlflow
-      POSTGRES_PASSWORD: mlflow
-      POSTGRES_DB: mlflow
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U mlflow"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+  mlflow_auth_db: *postgres
+  mlflow_db: *postgres
   mlflow:
     image: ghcr.io/ministryofjustice/analytical-platform-mlflow:local
     build: .
